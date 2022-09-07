@@ -1,5 +1,29 @@
 {% extends "GruposSociales/plantilla_base.html"  %}
 {%block base%}
-<a class="navbar-brand" href="{% url 'Formulario de Amigos' %}">Añadir familiar</a>
+<a class="navbar-brand" href="{% url 'Formulario de Familiares' %}">Añadir familiar</a>
 <h1>Familiares: </h1>
+<table border="4"> 
+    <tr>
+      <td>
+          <bol>Nombre</bol>
+      </td>
+      <td>
+          <bol>Apellido</bol>
+      </td>
+      <td>
+          <bol>edad</bol>
+      </td>
+      <td>
+          <bol>email</bol>
+      </td>
+    </tr>
+    {% for familiar in familiares %} 
+    <tr>
+       <td>{{familiar.nombre}}</td>
+       <td>{{familiar.apellido}}</td>
+       <td>{{familiar.edad}}</td>
+       <td>{{familiar.email}}</td>
+    </tr>
+    {% endfor %}
+  </table>
 {%endblock base%}
