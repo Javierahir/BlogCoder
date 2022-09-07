@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="/amigosform/" method="POST">
-       
-        <p>Nombre: <input type="text" name= "Nombre"></p>
-
-        <p>Apellido: <input type="text" name= "Apellido"></p>
-
-        <p>Edad: <input type="number" name= "Edad"></p>
-
-        <p>Email: <input type="text" name= "Edad"></p>
-
-        <input type="submit" value="Enviar">
-
-
-    </form>
-
-
-</body>
-</html>
+{% extends "GruposSociales/plantilla_base.html"  %}
+{%block base%}
+<form method="post">
+    {% csrf_token %}
+    {{ miFormulario.as_p }}
+    <input type="submit" value="Enviar" />
+</form>
+ {%endblock base%}

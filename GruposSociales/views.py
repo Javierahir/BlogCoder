@@ -1,9 +1,10 @@
+import email
 from re import A
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from GruposSociales.models import Familiares, Amigos, Compañeros 
-from GruposSociales.forms import FormularioAmigos
+from GruposSociales.forms import FormularioAmigos,FormularioCompañeros,FormularioFamiliares
 
 
 def inicio(request):
@@ -36,7 +37,7 @@ def formularioAmigos(request):
 
          informacion = miFormulario.cleaned_data
 
-         amigos = Amigos (nombre=informacion['nombre'], apellido=informacion['apellido'],edad=informacion['edad'],)
+         amigos = Amigos (nombre=informacion['nombre'], apellido=informacion['apellido'],edad=informacion['edad'],email=informacion['email'])
 
          amigos.save()
 
@@ -48,6 +49,28 @@ def formularioAmigos(request):
 
    return render(request, "GruposSociales/amigosform.html", {"miFormulario": miFormulario})
 
+def formulario_familiares(request):
 
+   if request.method == "POST":
+
+      formulario = FormularioAmigos(request.POST)
+
+      print(formulario)
+
+      if formulario.is_valid:
+
+         informacion = formulario.cleaned_data
+
+         amigos =Familiares(nombre=informacion['nombre'], apellido=informacion['apellido'],edad=informacion['edad'],email=informacion['email'])
+
+         amigos.save()
+
+         return render(request, "GruposSociales/inicio.html") 
+
+   else:
+
+      formulario= FormularioFamiliares() 
+
+   return render(request, "GruposSociales/familiaresform.html", {"formulario": formulario})
 
 
