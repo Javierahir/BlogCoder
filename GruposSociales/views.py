@@ -16,9 +16,9 @@ def amigos(request):
 
 def compañeros(request):
    compañeros= Compañeros.objects.all()
-   return render(request, "GruposSociales/amigos.html",{"compañeros":compañeros})
+   return render(request, "GruposSociales/compañeros.html",{"compañeros":compañeros})
 
 
 def familiares(request):
    familiares= Familiares.objects.all()
-   return render(request, "GruposSociales/amigos.html",{"familiares":familiares})
+   return render(request, "GruposSociales/familiares.html",{"familiares":familiares})
