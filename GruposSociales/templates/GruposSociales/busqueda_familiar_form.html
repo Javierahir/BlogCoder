@@ -1,0 +1,10 @@
+{% extends "GruposSociales/plantilla_base.html"  %}
+{%block base%}
+<form action="{%url 'buscar_familiar'%}" method="get">
+    {% csrf_token %}
+    <span> Nombre
+    <input type="text" name="nombre">
+|   </span>
+    <input type="submit" value="buscar" />
+</form>
+ {%endblock base%}
