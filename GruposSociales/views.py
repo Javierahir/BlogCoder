@@ -89,3 +89,42 @@ def formulario_compañeros(request):
       formulario= FormularioCompañeros() 
 
    return render(request, "GruposSociales/compañerosform.html", {"formulario": formulario})
+
+
+def busqueda_amigos(request):
+   return render(request,"GruposSociales/busqueda_amigosform.html")
+
+
+def buscar_amigos(request):
+   if request.GET["nombre"]:
+      nombre = request.GET["nombre"]
+      amigos = Amigos.objects.filter(nombre__icontains=nombre)
+      return render(request, "GruposSociales/amigos.html",{'amigos':amigos})
+   else:
+       return render(request, "GruposSociales/amigos.html",{'amigos':[]})
+
+
+def busqueda_familiar(request): 
+   return render(request,"GruposSociales/busqueda_familiar_form.html")    
+
+
+def buscar_familiar(request):
+   if request.GET["nombre"]:
+      nombre = request.GET["nombre"]
+      familiar = Familiares.objects.filter(nombre__icontains=nombre)
+      return render(request, "GruposSociales/familiares.html",{'familiares':familiar})
+   else:
+       return render(request, "GruposSociales/familiares.html",{'familiares':[]})
+
+
+def busqueda_compañero(request):
+   return render(request,"GruposSociales/busqueda_compañero_form.html")    
+
+
+def buscar_compañero(request):
+   if request.GET["nombre"]:
+      nombre = request.GET["nombre"]
+      compañero = Compañeros.objects.filter(nombre__icontains=nombre)
+      return render(request, "GruposSociales/compañeros.html",{'compañeros':compañero})
+   else:
+      return render(request, "GruposSociales/compañeros.html",{'compañeros':[]})

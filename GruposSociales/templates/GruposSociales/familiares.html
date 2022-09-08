@@ -1,6 +1,8 @@
 {% extends "GruposSociales/plantilla_base.html"  %}
 {%block base%}
-<a class="navbar-brand" href="{% url 'Formulario de Familiares' %}">Añadir familiar</a>
+<a class="navbar-brand" href="{% url 'Formulario de Familiares' %}">Añadir familiar</a> <br>
+<a class="navbar-brand" href="{% url 'busqueda_familiar_form' %}">Buscar familiar</a>
+{% if familiares %}
 <h1>Familiares: </h1>
 <table border="4"> 
     <tr>
@@ -26,4 +28,7 @@
     </tr>
     {% endfor %}
   </table>
+{% else %}
+<h4>No hay familiares con ese nombre</h4>
+{% endif %}
 {%endblock base%}
