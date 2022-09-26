@@ -1,8 +1,4 @@
-import email
-from re import A
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 from GruposSociales.models import Familiares, Amigos, Compañeros 
 from GruposSociales.forms import FormularioAmigos,FormularioCompañeros,FormularioFamiliares
 
@@ -25,27 +21,26 @@ def familiares(request):
    familiares= Familiares.objects.all()
    return render(request, "GruposSociales/familiares.html",{"familiares":familiares})
 
-def formularioAmigos(request):
+def formulario_amigos(request):
 
    if request.method == "POST":
 
       miFormulario = FormularioAmigos(request.POST)
 
-      print(miFormulario)
 
-      if miFormulario.is_valid: #Si paso la validacion de django
+      if miFormulario.is_valid(): 
 
          informacion = miFormulario.cleaned_data
 
-         amigos = Amigos (nombre=informacion['nombre'], apellido=informacion['apellido'],edad=informacion['edad'],email=informacion['email'])
+         amigo = Amigos (nombre=informacion['nombre'], apellido=informacion['apellido'],edad=informacion['edad'],email=informacion['email'])
 
-         amigos.save()
+         amigo.save()
 
-         return render(request, "GruposSociales/inicio.html") #Vuelta al inicio
+         return render(request, "GruposSociales/inicio.html") 
 
    else:
 
-      miFormulario= FormularioAmigos() #Formulario vacio para construir html
+      miFormulario= FormularioAmigos() 
 
    return render(request, "GruposSociales/amigosform.html", {"miFormulario": miFormulario})
 
@@ -53,17 +48,15 @@ def formulario_familiares(request):
 
    if request.method == "POST":
 
-      formulario = FormularioAmigos(request.POST)
+      formulario = FormularioFamiliares(request.POST)
 
-      print(formulario)
-
-      if formulario.is_valid:
+      if formulario.is_valid():
 
          informacion = formulario.cleaned_data
 
-         amigos =Familiares(nombre=informacion['nombre'], apellido=informacion['apellido'],edad=informacion['edad'],email=informacion['email'])
+         familiar =Familiares(nombre=informacion['nombre'], apellido=informacion['apellido'],edad=informacion['edad'],email=informacion['email'])
 
-         amigos.save()
+         familiar.save()
 
          return render(request, "GruposSociales/inicio.html") 
 
@@ -74,3 +67,64 @@ def formulario_familiares(request):
    return render(request, "GruposSociales/familiaresform.html", {"formulario": formulario})
 
 
+def formulario_compañeros(request):
+
+   if request.method == "POST":
+
+      formulario = FormularioCompañeros(request.POST)
+
+
+      if formulario.is_valid():
+
+         informacion = formulario.cleaned_data
+
+         compañeros =Compañeros(nombre=informacion['nombre'], apellido=informacion['apellido'],email=informacion['email'])
+
+         compañeros.save()
+
+         return render(request, "GruposSociales/inicio.html") 
+
+   else:
+
+      formulario= FormularioCompañeros() 
+
+   return render(request, "GruposSociales/compañerosform.html", {"formulario": formulario})
+
+
+def busqueda_amigos(request):
+   return render(request,"GruposSociales/busqueda_amigosform.html")
+
+
+def buscar_amigos(request):
+   if request.GET["nombre"]:
+      nombre = request.GET["nombre"]
+      amigos = Amigos.objects.filter(nombre__icontains=nombre)
+      return render(request, "GruposSociales/amigos.html",{'amigos':amigos})
+   else:
+       return render(request, "GruposSociales/amigos.html",{'amigos':[]})
+
+
+def busqueda_familiar(request): 
+   return render(request,"GruposSociales/busqueda_familiar_form.html")    
+
+
+def buscar_familiar(request):
+   if request.GET["nombre"]:
+      nombre = request.GET["nombre"]
+      familiar = Familiares.objects.filter(nombre__icontains=nombre)
+      return render(request, "GruposSociales/familiares.html",{'familiares':familiar})
+   else:
+       return render(request, "GruposSociales/familiares.html",{'familiares':[]})
+
+
+def busqueda_compañero(request):
+   return render(request,"GruposSociales/busqueda_compañero_form.html")    
+
+
+def buscar_compañero(request):
+   if request.GET["nombre"]:
+      nombre = request.GET["nombre"]
+      compañero = Compañeros.objects.filter(nombre__icontains=nombre)
+      return render(request, "GruposSociales/compañeros.html",{'compañeros':compañero})
+   else:
+      return render(request, "GruposSociales/compañeros.html",{'compañeros':[]})

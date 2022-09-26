@@ -1,8 +1,33 @@
 {% extends "GruposSociales/plantilla_base.html"  %}
 {%block base%}
 
-<a class="navbar-brand" href="{% url 'Formulario de Amigos' %}">Nuevo compañero</a>
+<a class="navbar-brand" href="{% url 'Formulario de Compañeros' %}">Nuevo compañero</a> <br>
+<a class="navbar-brand" href="{% url 'busqueda_compañero_form' %}">Buscar compañero</a>
 
+{% if compañeros %}
 <h1>Compañeros: </h1>
+<table border="4"> 
+    <tr>
+      <td>
+          <bol>Nombre</bol>
+      </td>
+      <td>
+          <bol>Apellido</bol>
+      </td>
 
+      <td>
+          <bol>email</bol>
+      </td>
+    </tr>
+    {% for compañero in compañeros %} 
+    <tr>
+       <td>{{compañero.nombre}}</td>
+       <td>{{compañero.apellido}}</td>
+       <td>{{compañero.email}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+<h4>No hay compañeros con ese nombre</h4>
+{% endif %}
 {%endblock base%}
