@@ -20,4 +20,3 @@ tests/auth_test_data/sheets.googleapis.com-python.json
 .python-version
 .coverage
 
-db.sqlite3
