@@ -3,13 +3,13 @@ from GruposSociales import views
 
 
 urlpatterns = [
-    path('',views.inicio,name='Inicio'),
-    path('amigos/',views.amigos,name="Amigos"),
+    path('',views.pages,name='Pages'),
     path('AboutBlog/',views.AboutBlog,name="AboutBlog"),
-    path('compañeros/',views.compañeros,name="Compañeros"),
-    path('formulario_amigos/',views.formulario_amigos,name="Formulario de Amigos"),
-    path('busqueda_amigo_form/',views.busqueda_amigos,name="busqueda_amigos_form"),
-    path('buscar_amigo/',views.buscar_amigos,name="buscar_amigos"), 
+    path('compañeros/',views.Blogs,name="Compañeros"),
+    #url Perfil
+    path('login/',views.login_request,name="Login"),
+    path('register/',views.register,name="Registro"),
+    path('logout/',views.CustomLogoutView.as_view(),name="Logout"),
 ]
 
 

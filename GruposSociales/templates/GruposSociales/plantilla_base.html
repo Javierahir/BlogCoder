@@ -20,15 +20,22 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
+        <nav class="navbar navbar-dark bg-dark static-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'AboutBlog' %}">AboutBlog</a>
-                <a class="navbar-brand" href="{% url 'Amigos' %}">Amigos</a>
+                <a class="navbar-brand" href="{% url 'Pages' %}">Pages</a>
+                <a class="navbar-brand" href="{% url 'AboutBlog' %}">AboutUs</a>
                 <a class="navbar-brand" href="{% url 'Compañeros' %}">Compañeros</a>
+                {% if user.is_authenticated %}
+                <a class="btn btn-danger" href="{% url 'Logout' %}">Logout</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
+                {% endif %}
             </div>
         </nav>
 
+        {% block sin_margen %}
+        {% endblock sin_margen %}
+        <section style="margin: 80px;">
         {% block base %}
         {% endblock base %}
         <!-- Footer-->
@@ -36,7 +43,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Entrega_1 2022. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Entrega_final Jeronimo Duarte-Javier Riera-Javier Dahir.</p>
                     </div>
                 </div>
             </div>
