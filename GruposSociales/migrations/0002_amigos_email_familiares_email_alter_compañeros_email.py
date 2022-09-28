@@ -15,14 +15,4 @@ class Migration(migrations.Migration):
             name='email',
             field=models.EmailField(max_length=254, null=True),
         ),
-        migrations.AddField(
-            model_name='familiares',
-            name='email',
-            field=models.EmailField(max_length=254, null=True),
-        ),
-        migrations.AlterField(
-            model_name='compañeros',
-            name='email',
-            field=models.EmailField(max_length=254, null=True),
-        ),
     ]
