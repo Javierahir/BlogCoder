@@ -1,7 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
 from GruposSociales.models import Amigos
-from GruposSociales.forms import FormularioAmigos
+from GruposSociales.forms import UserRegister, FormularioAmigos
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LogoutView 
+from django.urls import reverse_lazy
 
+#Views pages
+def pages(request):
+   return render(request, "GruposSociales/pages.html")
 
 def inicio(request):
     return render(request, "GruposSociales/inicio.html")
@@ -9,9 +16,6 @@ def inicio(request):
 def amigos(request):
    amigos= Amigos.objects.all()
    return render(request, "GruposSociales/amigos.html",{"amigos":amigos})
-
-def compañeros(request):
-   return render(request, "GruposSociales/compañeros.html")
 
 def AboutBlog(request):
    return render(request, "GruposSociales/AboutBlog.html",{"AboutBlog":AboutBlog})
