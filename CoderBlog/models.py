@@ -10,11 +10,4 @@ class Avatar(models.Model):
     def __str__(self):
         return f"Imagen de: {self.user}"
 
-class Blog(models.Model):
-    titulo = models.CharField(max_lenght=64)
-    subtitulo = models.CharField(max_lenght=64)
-    cuerpo = models.CharField()
-    autor = models.CharField(max_lenght=120)
-    fecha = models.DateField()
-    imagen = models.ImageField()
 
