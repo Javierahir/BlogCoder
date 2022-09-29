@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from GruposSociales.models import Avatar
+from CoderBlog.models import Avatar
 
 
 class UserRegisterForm(UserCreationForm):
@@ -23,8 +23,3 @@ class AvatarFormulario(forms.ModelForm):
         model = Avatar
         fields = ['imagen']
 
-class FormularioAmigos(forms.Form):
-    nombre = forms.CharField()
-    apellido = forms.CharField()
-    edad = forms.IntegerField()
-    email = forms.EmailField()

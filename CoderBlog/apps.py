@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class GrupossocialesConfig(AppConfig):
+class CoderBlogConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'GruposSociales'
+    name = 'CoderBlog'

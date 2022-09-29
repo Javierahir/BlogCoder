@@ -10,13 +10,13 @@
         <meta name="author" content="" />
         <title>Primer Entrega</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{% static 'GruposSociales/assets/favicon.ico' %}" />
+        <link rel="icon" type="image/x-icon" href="{% static 'CoderBlog/assets/favicon.ico' %}" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'GruposSociales/css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'CoderBlog/css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation-->
@@ -24,7 +24,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{% url 'Pages' %}">Pages</a>
                 <a class="navbar-brand" href="{% url 'AboutBlog' %}">AboutUs</a>
-                <a class="navbar-brand" href="{% url 'Compañeros' %}">Compañeros</a>
+                <a class="navbar-brand" href="{% url 'Blog' %}">Blogs</a>
                 {% if user.is_authenticated %}
                 <a class="btn btn-danger" href="{% url 'Logout' %}">Logout</a>
                 {% else %}
