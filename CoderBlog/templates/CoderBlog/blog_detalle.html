@@ -1,0 +1,11 @@
+{% extends "CoderBlog/plantilla_base.html"  %}
+{%block base %}
+<form method="post">
+<p>{{object.fecha}}</p>    
+    <h1>{{object.titulo}}</h1>
+    <h3>{{object.subtitulo}}</h3>
+    <p>{{object.cuerpo}}</p>
+
+    <img src="{{object.imagen.url}}"/> 
+    <p>{{object.user}}</p>
+{%endblock base%}

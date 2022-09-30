@@ -1,14 +1,51 @@
 {% extends "CoderBlog/plantilla_base.html"  %}
-{%block sin_margen%}
-<header class="masthead">
-    <div class="container position-relative">
-        <div class="row justify-content-center">
-            <div class="col-xl-6">
-                <div class="text-center text-white">
-                    <h1 class="mb-5"></h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-{%endblock sin_margen%}
+{%block base%}
+{% block style_block %}
+<style>
+  table.coder-table {
+    border:3px solid;
+  }
+  th,
+  td {
+    border:1px solid;
+    padding:5px 10px;
+  }
+  .eliminado {
+    background-color: red;
+  }
+</style>
+{% endblock style_block %}
+<table border="2"> 
+                        {% if object_list %}
+                        <table class="coder-table">
+                            <tbody>
+                              <tr>
+                                <th>
+                                  <strong>Titulo</strong>
+                                </th>
+                                <th>
+                                  <strong>Autor</strong>
+                                </th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                              </tr>
+                              {% for blog in object_list %}
+                              <tr>
+                                <td>{{blog.titulo}}</td>
+                                <td>{{blog.autor}}</td>
+                                <td><a href="{% url 'editar_blog' blog.id %}">Editar</a></td>  
+                                <td><a href="{% url 'eliminar_blog' blog.id %}">Eliminar</a></td>
+                                <td><a href="{% url 'detalle_blog' blog.id %}">Leer mas</a></td>
+                              </tr>
+                              
+                              {% endfor %}
+                            </tbody> 
+                        {% else %}
+                        <h1>No hay entradas aun</h1>
+                        {% endif %}
+                        
+                      
+                    <a href="{% url 'crear_blog' %}">Crear Blog </a></table>
+
+{%endblock base%}

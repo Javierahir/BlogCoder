@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'CoderBlog',
+    'Accounts',
 ]
 
 MIDDLEWARE = [
@@ -123,7 +124,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/CoderBLog/login/'
+LOGIN_URL = '/accounts/login/'
 
 MEDIA_URL = '/media/'
 
