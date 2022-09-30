@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 
 from CoderBlog.models import Avatar
 
+class FormularioBlog(forms.Form):
+    titulo = forms.CharField(max_length=128)
+    subtitulo = forms.CharField(max_length=128)
+    cuerpo = forms.CharField(max_length=500)
+    #autor 
+    #fecha
+    #imagen
+
 
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput) 

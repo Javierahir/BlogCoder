@@ -11,3 +11,10 @@ class Avatar(models.Model):
         return f"Imagen de: {self.user}"
 
 
+class Blog (models.Model):
+    titulo = models.CharField(max_length=128)
+    subtitulo = models.CharField(max_length=128)
+    cuerpo = models.CharField(max_length=500)
+    #autor 
+    #fecha
+    #imagen

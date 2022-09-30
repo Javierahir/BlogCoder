@@ -9,21 +9,90 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from CoderBlog.forms import UserRegisterForm,UserUpdateForm, AvatarFormulario
+
+from CoderBlog.models import Blog
+from CoderBlog.forms import UserRegisterForm,UserUpdateForm, AvatarFormulario, FormularioBlog
 
 
 
-#Views pages
+#Views inicio
+def inicio(request):
+    return render(request, "CoderBlog/inicio.html")
+
+
 def pages(request):
    return render(request, "CoderBlog/pages.html")
 
 
-def AboutBlog(request):
-   return render(request, "CoderBlog/AboutBlog.html",{"AboutBlog":AboutBlog})
+def AboutUs(request):
+   return render(request, "CoderBlog/about.html",{"AboutUs":AboutUs})
 
 
-def blogs(request):
-    return render(request,"CoderBlog/blog.html",{"blogs":blogs})
+# Views de blogs, creación, editado y borrado
+
+def blog(request):
+    blog = Blog.objects.all()
+    contexto = {"blog": blog}
+    borrado = request.GET.get('borrado', None)
+    contexto['borrado'] = borrado
+
+    return render(request, "CoderBlog/blog.html", contexto)
+
+
+@login_required
+def eliminar_blog(request,id):
+    blog = Blog.objects.get(id=id)
+    borrado_id = blog.id
+    blog.delete()
+    url_final = f"{reverse('blog')}?borrado={borrado_id}"
+
+    return redirect(url_final)
+
+
+@login_required
+def crear_blog(request):
+    if request.method == 'POST':
+        formulario = FormularioBlog(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            blog = Blog(**data)
+            # blog = Blog(apellido=data['apellido'], nombre=data['nombre'])
+            blog.save()
+            return redirect(reverse('blog'))
+    else:  # GET
+        formulario = FormularioBlog()  # Formulario vacio para construir el html
+    return render(request, "CoderBlog/blog.html", {"formulario": formulario})
+
+
+@login_required
+def editar_blog(request, id):
+    # Recibe param blog id, con el que obtenemos el blog
+    blog = Blog.objects.get(id=id)
+
+    if request.method == 'POST':
+        formulario = FormularioBlog(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            blog.titulo = data['titulo']
+            blog.subtitulo = data['subtitulo']
+            blog.cuerpo = data['cuerpo']
+            #blog.imagen = data['imagen']
+
+            blog.save()
+
+            return redirect(reverse('blog'))
+    else:  # GET
+        inicial = {
+            'titulo': blog.titulo,
+            'subtitulo': blog.subtitulo,
+            'cuerpo': blog.cuerpo,
+            #'imagen': blog.imagen,
+        }
+        formulario = FormularioBlog(initial=inicial)
+    return render(request, "CoderBlog/blog.html", {"formulario": formulario})
 
 
 #views perfil
@@ -35,6 +104,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
 
 @login_required
 def agregar_avatar(request):
