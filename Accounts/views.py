@@ -21,21 +21,6 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
 
-#@login_required
-def agregar_avatar(request):
-    if request.method == 'POST':
-
-        form = AvatarFormulario(request.POST, request.FILES) 
-
-        if form.is_valid:   
-            avatar = form.save()
-            avatar.user = request.user
-            avatar.save()
-            return redirect(reverse('pages'))
-
-    form = AvatarFormulario() 
-    return render(request, "Accounts/form_avatar.html", {"form":form})
-
 def register(request):
     mensaje = ''
     if request.method == 'POST':
@@ -66,15 +51,19 @@ def login_request(request):
                 login(request=request, user=user)
                 if next_url:
                     return redirect(next_url)
-                return render(request, "CoderBlog/pages.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request, "CoderBlog/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
             else:
-                return render(request,"CoderBlog/pages.html", {"mensaje":"Error, datos incorrectos"})
+                return render(request,"Accounts/login.html", {"mensaje":"Error, datos incorrectos"})
         else:
-            return render(request,"CoderBlog/pages.html", {"mensaje":"Error, formulario erroneo"})
+            return render(request,"Accounts/login.html", {"mensaje":"Error, datos erroneos"})
 
-    form = AuthenticationForm()
-    return render(request,"Accounts/login.html", {'form':form} )
+    formulario = AuthenticationForm()
+    return render(request,"Accounts/login.html", {'form':formulario} )
 
 
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('Login')
+
+
+def perfil(request):
+    return render(request,'Accounts/perfil.html' )

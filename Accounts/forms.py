@@ -7,6 +7,8 @@ class AvatarFormulario(forms.ModelForm):
     class Meta:
         model = Avatar
         fields = ['imagen']
+
+        
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput) 
     password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput)

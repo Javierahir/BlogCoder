@@ -5,7 +5,8 @@
     <h1>{{object.titulo}}</h1>
     <h3>{{object.subtitulo}}</h3>
     <p>{{object.cuerpo}}</p>
-
+    {% if blog.imagen %}
     <img src="{{object.imagen.url}}"/> 
-    <p>{{object.user}}</p>
+    {% endif %}   
+    <p>Autor:{{object.autor}}</p>
 {%endblock base%}

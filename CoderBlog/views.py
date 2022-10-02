@@ -1,4 +1,5 @@
 from typing import Dict
+from urllib import request
 
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, authenticate
@@ -11,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
 from CoderBlog.models import Blog
-from CoderBlog.forms import FormularioBlog
+from CoderBlog.forms import BlogFormulario
 
 
 
@@ -40,10 +41,19 @@ class BlogDelete(LoginRequiredMixin,DeleteView):
     success_url = reverse_lazy('Blog')
 
 
-class BlogCreate(LoginRequiredMixin,CreateView):
-    model = Blog
-    success_url = reverse_lazy('Blog')
-    fields  = [  'titulo', 'subtitulo', 'cuerpo','autor']
+@login_required
+def crear_blog(request):
+    if request.method == 'POST':
+        form = BlogFormulario(request.POST,request.FILES)
+
+        if form.is_valid():
+            blog = form.save()
+            blog.autor = request.user
+            blog.save()
+            return redirect(reverse('Blog'))
+    else:  # GET
+        form = BlogFormulario()  # Formulario vacio para construir el html
+    return render(request, "CoderBlog/blog_form.html", {"form": form})
 
 class BlogUpdate(LoginRequiredMixin,UpdateView):
     model = Blog 

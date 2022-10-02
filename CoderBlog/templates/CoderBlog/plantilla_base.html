@@ -25,6 +25,7 @@
                 <a class="navbar-brand" href="{% url 'Pages' %}">Pages</a>
                 <a class="navbar-brand" href="{% url 'AboutUs' %}">AboutUs</a>
                 <a class="navbar-brand" href="{% url 'Blog' %}">Blogs</a>
+                <a class="navbar-brand" href="{% url 'Perfil' %}">Perfil</a>
                 {% if user.is_authenticated %}
                 <a class="btn btn-danger" href="{% url 'Logout' %}">Logout</a>
                 {% else %}
@@ -38,6 +39,9 @@
         {% block sin_margen %}
         {% endblock sin_margen %}
         <section style="margin: 80px;">
+        {% if mensaje %} 
+        <span style="background-color: lightgreen;">{{mensaje}}</span>
+        {% endif %}   
         {% block base %}
         {% endblock base %}
         <!-- Footer-->

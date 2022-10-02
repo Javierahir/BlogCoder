@@ -6,7 +6,7 @@ from Accounts import views
 urlpatterns = [
 # URLS Perfil
     path('editar-usuario/',views.ProfileUpdateView.as_view(),name="editar_usuario"),
-    path('agregar-avatar/', views.agregar_avatar, name="agregar_avatar"),
+    path('perfil/',views.perfil, name='Perfil'),
     # URLS Usuario y Sesión
     path('login/',views.login_request,name="Login"),
     path('register/',views.register,name="Registro"),
