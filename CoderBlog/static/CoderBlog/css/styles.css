@@ -11376,34 +11376,7 @@ header.masthead h1, header.masthead .h1 {
 }
 
 footer.footer {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-
-
-.container{
-  margin-top: 100px;
-  display: flex; 
-  padding: 5px;
-  justify-content: end;
-  
-}
-
-.container img{
-  width: 200px;
-  height: auto;
-  justify-items: center;
-}
-.texto1{
-  text-align: start;
-}
-
-.texto2{
-  text-align: start;
-}
-
-.texto3{
-  text-align: start;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
 }
 

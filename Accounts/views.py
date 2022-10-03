@@ -28,7 +28,7 @@ def register(request):
 
         if form.is_valid():
             form.save()
-            return render(request, "CoderBlog/pages.html", {"mensaje": "Usuario Creado :)"})
+            return render(request, "CoderBlog/inicio.html", {"mensaje": "Usuario Creado :)"})
         else:
             mensaje = 'Cometiste un error en el registro'
     formulario = UserRegisterForm()  # Formulario vacio para construir el html

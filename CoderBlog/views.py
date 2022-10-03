@@ -20,11 +20,6 @@ from CoderBlog.forms import BlogFormulario
 def inicio(request):
     return render(request, "CoderBlog/inicio.html")
 
-
-def pages(request):
-   return render(request, "CoderBlog/pages.html")
-
-
 def AboutUs(request):
    return render(request, "CoderBlog/about.html",{"AboutUs":AboutUs})
 
