@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from datetime import date
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+
+
 class Blog (models.Model):
     titulo = models.CharField(max_length=128)
     subtitulo = models.CharField(max_length=128)
