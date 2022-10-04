@@ -8,7 +8,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from Accounts.forms import UserRegisterForm,UserUpdateForm,AvatarFormulario
+from Accounts.forms import UserRegisterForm,UserUpdateForm
 # Create your views here.
 #views perfil
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
@@ -64,6 +64,6 @@ def login_request(request):
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('Login')
 
-
+@login_required
 def perfil(request):
     return render(request,'Accounts/perfil.html' )
