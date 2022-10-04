@@ -14,7 +14,7 @@ from Accounts.forms import UserRegisterForm,UserUpdateForm,AvatarFormulario
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
-    success_url = reverse_lazy('Pages')
+    success_url = reverse_lazy('Perfil')
     template_name = 'Accounts/form_perfil.html'
 
     def get_object(self, queryset=None):
